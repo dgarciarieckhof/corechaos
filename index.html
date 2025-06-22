@@ -13,6 +13,11 @@
       <source src="assets/sounds/8bit-sound.mp3" type="audio/mpeg" />
     </audio>
 
+    <audio id="sound-flame" src="assets/sounds/flame.mp3"></audio>
+    <audio id="sound-mirror" src="assets/sounds/mirror.mp3"></audio>
+    <audio id="sound-grinder" src="assets/sounds/grinder.mp3"></audio>
+    <audio id="sound-click" src="assets/sounds/click.mp3"></audio>    
+
     <section id="hud">
       <img src="assets/icons/icon-fire.png" class="icon flame" alt="flame" />
       <span class="score flame-score">0%</span>
@@ -49,6 +54,18 @@
     <div id="question-text"></div>
     <div id="answer-container"></div>
     </section>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="hidden">
+    <div class="modal-content">
+        <h2>YOU ARE...</h2>
+        <img id="meme-image" src="" alt="Meme" style="width: 100%; margin: 20px 0;" />
+        <div>
+        <button onclick="shareResult()">SHARE</button>
+        <button onclick="toggleResult(false)">CLOSE</button>
+        </div>
+    </div>
+    </div>    
 
     <!-- Footer -->
     <footer>

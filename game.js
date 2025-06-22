@@ -17,10 +17,19 @@ function shuffle(array) {
 }
 
 function startGame() {
-  document.getElementById('main-menu').style.display = 'none';
-  document.getElementById('question-box').classList.remove('hidden');
-  showQuestion();
-  updateScores(); // init HUD
+  fetch('assets/questions.json')
+    .then(response => response.json())
+    .then(data => {
+      questions = shuffle(data).slice(0, 10);
+      currentQuestionIndex = 0;
+      score = { flame: 0, mirror: 0, grinder: 0 };
+
+      document.getElementById('main-menu').style.display = 'none';
+      document.getElementById('question-box').classList.remove('hidden');
+      showQuestion();
+      updateScores();
+    })
+    .catch(err => console.error("Failed to load questions:", err));
 }
 
 function showQuestion() {
@@ -41,20 +50,22 @@ function showQuestion() {
 }
 
 function handleAnswer(type) {
+  playClickSound();       // Play click sound
+
   score[type]++;
   currentQuestionIndex++;
 
-  updateScores(); // Update visual scores in triangle HUD
+  updateScores();
 
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
-    finishGame();
+    finishGame();          // Only here we play trait sound
   }
 }
 
 function updateScores() {
-  const total = currentQuestionIndex || 1; // Avoid divide by 0
+  const total = currentQuestionIndex || 1;
 
   const flamePct = Math.round((score.flame / total) * 100);
   const mirrorPct = Math.round((score.mirror / total) * 100);
@@ -66,11 +77,48 @@ function updateScores() {
 }
 
 function finishGame() {
-  const qBox = document.getElementById('question-box');
-  qBox.innerHTML = `
-    <h2>RESULT</h2>
-    <p>🔥 FLAME: ${score.flame * 10}%</p>
-    <p>🪞 MIRROR: ${score.mirror * 10}%</p>
-    <p>💪 GRINDER: ${score.grinder * 10}%</p>
-  `;
+  const dominant = getDominantTrait();
+
+  // Duck BGM
+  const bgm = document.getElementById("bgm");
+  if (bgm) bgm.volume = 0.1;
+
+  // Play trait sound
+  const traitSound = document.getElementById(`sound-${dominant}`);
+  if (traitSound) {
+    traitSound.currentTime = 0;
+    traitSound.play();
+  }
+
+  // Show meme
+  const memeMap = {
+    flame: 'assets/memes/flame.jpg',
+    mirror: 'assets/memes/mirror.jpg',
+    grinder: 'assets/memes/grinder.jpg'
+  };
+
+  const memeImg = document.getElementById('meme-image');
+  memeImg.src = memeMap[dominant];
+
+  toggleResult(true);
+}
+
+function getDominantTrait() {
+  let max = -Infinity;
+  let dominant = '';
+  for (const type in score) {
+    if (score[type] > max) {
+      max = score[type];
+      dominant = type;
+    }
+  }
+  return dominant;
+}
+
+function playClickSound() {
+  const click = document.getElementById("sound-click");
+  if (click) {
+    click.currentTime = 0;
+    click.play();
+  }
 }

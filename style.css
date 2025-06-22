@@ -329,3 +329,24 @@ footer {
   margin-top: 30px;
   padding: 0 10px;
 }
+
+#result-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #111;
+  border: 2px solid var(--neon-pink);
+  color: var(--neon-cyan);
+  padding: 30px;
+  font-family: 'Press Start 2P', monospace;
+  text-align: center;
+  width: 280px;
+  box-shadow: 0 0 12px var(--neon-pink);
+}
