@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dgarciarieckhof.github.io/corechaos/sitemap.xml
