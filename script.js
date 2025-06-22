@@ -1,7 +1,3 @@
-function startGame() {
-  alert("Game starting soon!");
-}
-
 function toggleCredits(show) {
   const modal = document.getElementById('modal');
   if (show) {

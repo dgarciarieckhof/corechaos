@@ -1,0 +1,142 @@
+[
+  { "text": "Your phone is at 1%. What do you do?", "answers": [
+    { "text": "Post one last story", "type": "flame" },
+    { "text": "Screenshot your battery stats", "type": "mirror" },
+    { "text": "Find the nearest outlet", "type": "grinder" }
+  ] },
+  { "text": "You’re being canceled online. Reaction?", "answers": [
+    { "text": "Double down and tweet again", "type": "flame" },
+    { "text": "Drop a Notes app apology", "type": "mirror" },
+    { "text": "Ignore and keep grinding", "type": "grinder" }
+  ] },
+  { "text": "You’re late and your phone dies. What now?", "answers": [
+    { "text": "Panic and sprint", "type": "flame" },
+    { "text": "Ask strangers for help", "type": "mirror" },
+    { "text": "Walk it off, you're still going", "type": "grinder" }
+  ] },
+  { "text": "Someone steals your meme. What’s your vibe?", "answers": [
+    { "text": "Flame them publicly", "type": "flame" },
+    { "text": "DM them with reflection", "type": "mirror" },
+    { "text": "Make a better one", "type": "grinder" }
+  ] },
+  { "text": "Group project chaos. Your move?", "answers": [
+    { "text": "Take over and rebrand it", "type": "flame" },
+    { "text": "Host a vibe check", "type": "mirror" },
+    { "text": "Just do all the work", "type": "grinder" }
+  ] },
+  { "text": "Wi-Fi is down. First instinct?", "answers": [
+    { "text": "Reset the router with rage", "type": "flame" },
+    { "text": "Sit in silence, embrace it", "type": "mirror" },
+    { "text": "Use data and move on", "type": "grinder" }
+  ] },
+  { "text": "You get ghosted. Reaction?", "answers": [
+    { "text": "Roast them in group chat", "type": "flame" },
+    { "text": "Write a journal entry", "type": "mirror" },
+    { "text": "Grind harder and glow up", "type": "grinder" }
+  ] },
+  { "text": "Your crush reacts to your story. You...", "answers": [
+    { "text": "Post a thirst trap", "type": "flame" },
+    { "text": "Analyze the emoji choice", "type": "mirror" },
+    { "text": "Pretend nothing happened", "type": "grinder" }
+  ] },
+  { "text": "The app crashes mid-post. You...", "answers": [
+    { "text": "Yell and try again", "type": "flame" },
+    { "text": "Take it as a sign", "type": "mirror" },
+    { "text": "Reboot and post better", "type": "grinder" }
+  ] },
+  { "text": "Your vibe in a group chat is...", "answers": [
+    { "text": "Chaos starter", "type": "flame" },
+    { "text": "Deep thought dropper", "type": "mirror" },
+    { "text": "Always sending memes", "type": "grinder" }
+  ] },
+  { "text": "You forgot someone’s birthday. You...", "answers": [
+    { "text": "Send a wild apology TikTok", "type": "flame" },
+    { "text": "Make a heartfelt post", "type": "mirror" },
+    { "text": "Offer to cover lunch", "type": "grinder" }
+  ] },
+  { "text": "You’re on a bad date. What do you do?", "answers": [
+    { "text": "Fake an emergency", "type": "flame" },
+    { "text": "See it through and reflect later", "type": "mirror" },
+    { "text": "Use it for content", "type": "grinder" }
+  ] },
+  { "text": "First thing you do waking up?", "answers": [
+    { "text": "Check notifications", "type": "flame" },
+    { "text": "Stare at the ceiling", "type": "mirror" },
+    { "text": "Open calendar and start", "type": "grinder" }
+  ] },
+  { "text": "You lost a streak. Reaction?", "answers": [
+    { "text": "Explode in Snap", "type": "flame" },
+    { "text": "Mourn quietly", "type": "mirror" },
+    { "text": "Just restart", "type": "grinder" }
+  ] },
+  { "text": "You spill your drink. What now?", "answers": [
+    { "text": "Laugh and make it a TikTok", "type": "flame" },
+    { "text": "Apologize to the floor", "type": "mirror" },
+    { "text": "Clean up fast", "type": "grinder" }
+  ] },
+  { "text": "Friend starts drama. You...", "answers": [
+    { "text": "Join in", "type": "flame" },
+    { "text": "Try to mediate", "type": "mirror" },
+    { "text": "Mute the group", "type": "grinder" }
+  ] },
+  { "text": "You hear gossip. Reaction?", "answers": [
+    { "text": "Spill it", "type": "flame" },
+    { "text": "Sit with it", "type": "mirror" },
+    { "text": "Ignore it", "type": "grinder" }
+  ] },
+  { "text": "Alarm rings. You...", "answers": [
+    { "text": "Throw phone", "type": "flame" },
+    { "text": "Reflect on dreams", "type": "mirror" },
+    { "text": "Jump up & hustle", "type": "grinder" }
+  ] },
+  { "text": "Playlist isn’t vibing. You...", "answers": [
+    { "text": "Make chaos playlist", "type": "flame" },
+    { "text": "Moodboard new vibe", "type": "mirror" },
+    { "text": "Power through", "type": "grinder" }
+  ] },
+  { "text": "You’re on read. You...", "answers": [
+    { "text": "Send 3 more", "type": "flame" },
+    { "text": "Unsend and analyze", "type": "mirror" },
+    { "text": "Ignore and level up", "type": "grinder" }
+  ] },
+  { "text": "You miss the bus. What now?", "answers": [
+    { "text": "Post about it", "type": "flame" },
+    { "text": "Take a walk and reflect", "type": "mirror" },
+    { "text": "Start walking to next stop", "type": "grinder" }
+  ] },
+  { "text": "You’re accidentally live. What now?", "answers": [
+    { "text": "Say hi & vibe", "type": "flame" },
+    { "text": "Apologize instantly", "type": "mirror" },
+    { "text": "Use the moment", "type": "grinder" }
+  ] },
+  { "text": "Your fav creator gets exposed. You...", "answers": [
+    { "text": "Defend or destroy", "type": "flame" },
+    { "text": "Reflect on parasocial ties", "type": "mirror" },
+    { "text": "Unfollow quietly", "type": "grinder" }
+  ] },
+  { "text": "Binge watching at 3am. You...", "answers": [
+    { "text": "One more episode", "type": "flame" },
+    { "text": "Self-reflection spiral", "type": "mirror" },
+    { "text": "Set alarm and crash", "type": "grinder" }
+  ] },
+  { "text": "Phone fell on your face. Reaction?", "answers": [
+    { "text": "Laugh and tweet", "type": "flame" },
+    { "text": "Take it as karma", "type": "mirror" },
+    { "text": "Rub nose and move on", "type": "grinder" }
+  ] },
+  { "text": "Someone spoils the ending. You...", "answers": [
+    { "text": "Spoil something back", "type": "flame" },
+    { "text": "Mourn the twist", "type": "mirror" },
+    { "text": "Still watch it", "type": "grinder" }
+  ] },
+  { "text": "Your fit goes viral. What next?", "answers": [
+    { "text": "Monetize it", "type": "flame" },
+    { "text": "Post BTS thoughts", "type": "mirror" },
+    { "text": "Keep it pushing", "type": "grinder" }
+  ] },
+  { "text": "Craving attention. What’s your move?", "answers": [
+    { "text": "Post chaotic selfie", "type": "flame" },
+    { "text": "Subtle quote story", "type": "mirror" },
+    { "text": "Text a friend", "type": "grinder" }
+  ] }
+]

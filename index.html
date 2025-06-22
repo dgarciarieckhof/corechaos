@@ -10,7 +10,7 @@
     <h1 class="title">CORE CHAOS</h1>
 
     <audio id="bgm" loop autoplay muted>
-    <source src="assets/sounds/8bit-sound.mp3" type="audio/mpeg" />
+      <source src="assets/sounds/8bit-sound.mp3" type="audio/mpeg" />
     </audio>
 
     <section id="hud">
@@ -38,21 +38,25 @@
       <span class="label grinder">THE GRINDER</span>
     </section>
 
-    <div id="Menu">
-      <button class="ITEM" onclick="startGame()">START</button>
+    <!-- Main Menu -->
+    <div id="main-menu">
+      <button id="startButton" class="ITEM">START</button>
       <button class="ITEM" onclick="toggleCredits(true)">CREDITS</button>
     </div>
 
-    <section id="game" class="hidden">
-      <div id="questionBox"></div>
-      <div id="answersBox"></div>
+    <!-- Game Section -->
+    <section id="question-box" class="hidden">
+    <div id="question-text"></div>
+    <div id="answer-container"></div>
     </section>
 
+    <!-- Footer -->
     <footer>
       <img class="footer-icon" src="assets/icons/icon-ig.png" onclick="window.open('https://instagram.com', '_blank')" />
       <img class="footer-icon" src="assets/icons/icon-coin.png" onclick="window.open('https://www.buymeacoffee.com', '_blank')" />
     </footer>
 
+    <!-- Credits Modal -->
     <div id="modal" class="hidden">
       <div class="modal-content">
         <h2>CREDITS</h2>
@@ -60,12 +64,9 @@
         <button onclick="toggleCredits(false)">CLOSE</button>
       </div>
     </div>
-
-    <audio id="bgm" loop autoplay muted>
-      <source src="assets/audio/loop.mp3" type="audio/mpeg" />
-    </audio>
   </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>

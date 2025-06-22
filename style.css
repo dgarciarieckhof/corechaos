@@ -295,3 +295,37 @@ footer {
     font-size: 10px;
   }
 }
+
+#answer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.answer-button {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9rem;
+  color: #fff;
+  background: transparent;
+  border: 2px solid #ff37f8;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #ff37f8, 0 0 10px #ff37f8;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.answer-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px #ff37f8, 0 0 16px #ff37f8;
+}
+
+#question-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: #00f9ff;
+  text-align: center;
+  margin-top: 30px;
+  padding: 0 10px;
+}
