@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --neon-cyan: #00f9ff;
+  --neon-pink: #ff37f8;
+  --gradient: linear-gradient(180deg, #ffbf48 0%, #ff006a 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: black;
+  color: var(--neon-cyan);
+  font-family: 'Press Start 2P', monospace;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+#crt {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px 20px 80px;
+}
+
+.title {
+  white-space: nowrap;
+  font-size: 48px;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px var(--neon-pink);
+  margin: 0 0 30px;
+}
+
+#hud {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  margin: 60px auto 30px; /* moved triangle slightly lower */
+}
+
+#tri {
+  width: 100%;
+  height: auto;
+}
+
+/* Icons on triangle points */
+.icon {
+  position: absolute;
+  image-rendering: pixelated;
+}
+.icon.flame {
+  top: -65px; /* moved slightly higher */
+  left: 32.5%;
+  transform: translateX(-50%);
+  width: 140px;
+}
+.icon.mirror {
+  left: -45px;
+  bottom: 29px; /* raised higher */
+  width: 100px;
+}
+.icon.grinder {
+  right: -45px;
+  bottom: 29px; /* raised higher */
+  width: 110px;
+}
+
+/* Labels */
+.label {
+  position: absolute;
+  font-size: 12px;
+  color: #00ff66;
+  text-shadow: 0 0 6px #00ff66;
+}
+.label.flame {
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.label.mirror {
+  bottom: 15px;
+  left: 0;
+  text-align: left;
+}
+.label.grinder {
+  bottom: 15px;
+  right: 0;
+  text-align: right;
+}
+
+/* Buttons */
+#Menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 0;
+  margin-bottom: 40px; /* more spacing from triangle */
+}
+
+.ITEM {
+  font: inherit;
+  color: #fff;
+  background: #000;
+  border: 2px solid var(--neon-pink);
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  text-shadow: 0 0 6px var(--neon-pink);
+}
+.ITEM:hover {
+  background: var(--neon-pink);
+  color: #000;
+}
+
+/* Footer Icons */
+footer {
+  margin-top: 40px;
+}
+.footer-icon {
+  width: 80px;
+  margin: 0 20px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 5px #ff37f8);
+}
+
+/* Modal */
+#modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #111;
+  border: 2px solid var(--neon-pink);
+  color: var(--neon-cyan);
+  padding: 30px;
+  font-family: 'Press Start 2P', monospace;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 0 12px var(--neon-pink);
+}
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--neon-pink);
+}
+.modal-content button {
+  margin-top: 20px;
+  background: black;
+  color: var(--neon-pink);
+  border: 2px solid var(--neon-pink);
+  padding: 10px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.hidden {
+  display: none !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  #crt {
+    padding: 20px 10px 60px;
+  }
+  .title {
+    font-size: 36px;
+  }
+  .footer-icon {
+    width: 60px;
+  }
+  .ITEM {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+  .icon.flame {
+    width: 70px;
+    top: -40px;
+  }
+  .icon.mirror {
+    width: 60px;
+    left: -25px;
+  }
+  .icon.grinder {
+    width: 70px;
+    right: -25px;
+  }
+  .label {
+    font-size: 10px;
+  }
+}
+
+/* Animations */
+.icon {
+  animation: floatUp 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 3px #fff);
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px #ff37f8);
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+#dot {
+  transform-origin: center;
+  animation: chaosMotion 2.5s infinite ease-in-out, pulseGlow 1.5s ease-in-out infinite;
+}
+
+/* FULL chaos motion: up/down, left/right, twist */
+@keyframes chaosMotion {
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  15%  { transform: translate(-3px, -2px) rotate(-5deg); }
+  30%  { transform: translate(4px, 3px) rotate(4deg); }
+  45%  { transform: translate(-2px, 4px) rotate(-3deg); }
+  60%  { transform: translate(2px, -4px) rotate(5deg); }
+  75%  { transform: translate(-4px, 2px) rotate(-4deg); }
+  90%  { transform: translate(3px, -3px) rotate(3deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Neon pulse as before */
+@keyframes pulseGlow {
+  0%   { fill: #ff37f8; r: 8; filter: drop-shadow(0 0 2px #ff37f8); }
+  50%  { fill: #ff9cf9; r: 10; filter: drop-shadow(0 0 8px #ff37f8); }
+  100% { fill: #ff37f8; r: 8; filter: drop-shadow(0 0 2px #ff37f8); }
+}
+
+
