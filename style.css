@@ -350,3 +350,15 @@ footer {
   width: 280px;
   box-shadow: 0 0 12px var(--neon-pink);
 }
+
+#share-buttons button {
+  background: black;
+  color: var(--neon-pink);
+  border: 2px solid var(--neon-pink);
+  margin: 6px;
+  padding: 10px 12px;
+  font-family: 'Press Start 2P', monospace;
+  cursor: pointer;
+  font-size: 10px;
+  box-shadow: 0 0 6px var(--neon-pink);
+}

@@ -1,10 +1,6 @@
 function toggleCredits(show) {
   const modal = document.getElementById('modal');
-  if (show) {
-    modal.classList.remove('hidden');
-  } else {
-    modal.classList.add('hidden');
-  }
+  modal.classList.toggle('hidden', !show);
 }
 
 // Unmute audio on first user interaction (required by most browsers)
@@ -20,33 +16,36 @@ document.body.addEventListener("click", () => {
 function shareResult() {
   const image = document.getElementById('meme-image');
   const description = document.getElementById('class-description').textContent;
-  const label = document.querySelector('#result-modal h2').textContent;
+  let rawLabel = document.querySelector('#result-modal h2').textContent;
+  let label = rawLabel.replace("YOU ARE...", "").trim();
 
   const canvas = document.createElement('canvas');
   canvas.width = image.width;
-  canvas.height = image.height + 80;
+  canvas.height = image.height + 100;
 
   const ctx = canvas.getContext('2d');
   ctx.drawImage(image, 0, 0);
 
-  // 🟣 ADD TEXT OVERLAY HERE
   ctx.fillStyle = "#FF00FF";
   ctx.font = "16px 'Press Start 2P', monospace";
   ctx.fillText(label.toUpperCase(), 10, image.height + 25);
   ctx.fillText(description.slice(0, 40) + "...", 10, image.height + 50);
+  ctx.fillText("corechaos.io", 10, image.height + 75);
 
   canvas.toBlob(blob => {
-    const file = new File([blob], 'result.png', { type: 'image/png' });
+    const file = new File([blob], 'meme.png', { type: 'image/png' });
+
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       navigator.share({
         files: [file],
         title: label,
-        text: "Check my chaos class!"
+        text: "Check your chaos class at corechaos.io"
       });
     } else {
+      alert("Sharing not supported. We'll download the image instead.");
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'result.png';
+      a.download = 'meme.png';
       a.click();
     }
   });
@@ -84,33 +83,4 @@ function toggleResult(show) {
   }
 }
 
-document.getElementById('shareButton').addEventListener('click', () => {
-  const canvas = document.createElement('canvas');
-  const image = document.getElementById('meme-image');
-  const description = document.getElementById('class-description').textContent;
-  const label = document.querySelector('#result-modal h2').textContent;
-
-  canvas.width = image.width;
-  canvas.height = image.height + 80;
-
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(image, 0, 0);
-
-  ctx.fillStyle = "#FF00FF";
-  ctx.font = "16px 'Press Start 2P', monospace";
-  ctx.fillText(label, 10, image.height + 20);
-  ctx.fillText(description.slice(0, 30) + "...", 10, image.height + 40); // Trimmed
-
-  canvas.toBlob(blob => {
-    const file = new File([blob], 'meme.png', { type: 'image/png' });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({
-        files: [file],
-        title: label,
-        text: "Here's my chaos alignment!"
-      });
-    } else {
-      alert("Sharing not supported, try right-click saving instead.");
-    }
-  });
-});
+document.getElementById('shareButton').addEventListener('click', shareResult);
