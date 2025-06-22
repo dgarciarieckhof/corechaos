@@ -40,3 +40,8 @@ assets/
 - Add ads through pop ups once you are done with the quizz
 - Add ads at the bottom of the footer icons
 - Optimize code structure
+
+## License
+
+This project is **not open source**. All rights reserved © 2025 Diego García.  
+Please do not reuse or redistribute code or assets without permission.
