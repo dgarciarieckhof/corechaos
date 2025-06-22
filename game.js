@@ -105,7 +105,7 @@ function finishGame() {
 
   // Lower background music
   const bgm = document.getElementById("bgm");
-  if (bgm) bgm.volume = 0.;
+  if (bgm) bgm.volume = 0;
 
   // Play trait sound (still based on dominant for simplicity)
   const traitSound = document.getElementById(`sound-${dominant}`);
