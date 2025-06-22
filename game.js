@@ -85,25 +85,23 @@ function updateScores() {
 }
 
 function finishGame() {
-  const dominant = getDominantTrait();
+  const { type, dominant, label, description, image } = getResultType();
 
+  // Lower background music
   const bgm = document.getElementById("bgm");
-  if (bgm) bgm.volume = 0.1;
+  if (bgm) bgm.volume = 0.;
 
+  // Play trait sound (still based on dominant for simplicity)
   const traitSound = document.getElementById(`sound-${dominant}`);
   if (traitSound) {
     traitSound.currentTime = 0;
     traitSound.play();
   }
 
-  const memeMap = {
-    flame: 'assets/memes/flame.jpg',
-    mirror: 'assets/memes/mirror.jpg',
-    grinder: 'assets/memes/grinder.jpg'
-  };
-
-  const memeImg = document.getElementById('meme-image');
-  memeImg.src = memeMap[dominant];
+  // Update modal
+  document.querySelector('#result-modal h2').textContent = `YOU ARE... ${label.toUpperCase()}`;
+  document.getElementById('meme-image').src = image;
+  document.getElementById('class-description').textContent = description;
 
   toggleResult(true);
 }
@@ -118,6 +116,76 @@ function getDominantTrait() {
     }
   }
   return dominant;
+}
+
+function getResultType() {
+  const sorted = Object.entries(score).sort((a, b) => b[1] - a[1]);
+  const [first, second, third] = sorted;
+  const diff1 = first[1] - second[1];
+
+  const images = {
+    flame: 'assets/memes/flame.png',
+    mirror: 'assets/memes/mirror.png',
+    grinder: 'assets/memes/grinder.png',
+    'flame+mirror': 'assets/memes/flame-mirror.png',
+    'flame+grinder': 'assets/memes/flame-grinder.png',
+    'mirror+grinder': 'assets/memes/mirror-grinder.png',
+    'flame+grinder+mirror': 'assets/memes/triad.png'
+  };
+
+  const comboDescriptions = {
+    'flame+mirror': {
+      label: 'Flame x Mirror',
+      description: 'Chaotic introspection. You light fires and analyze the sparks.'
+    },
+    'flame+grinder': {
+      label: 'Flame x Grinder',
+      description: 'Hustle with heat. You burn bright and never stop.'
+    },
+    'mirror+grinder': {
+      label: 'Mirror x Grinder',
+      description: 'Intense introspection with a to-do list. Self-aware overachiever.'
+    },
+    'flame+grinder+mirror': {
+      label: 'The Triad',
+      description: 'You defy classification. A little bit of everything. Chaos incarnate.'
+    }
+  };
+
+  const pureDescriptions = {
+    flame: 'Too hot to hold. Born to go viral. Burnout is a feature, not a bug.',
+    mirror: 'Self-aware, main-character-coded. Doesn’t blink. Loves introspection.',
+    grinder: 'Can’t stop won’t stop. Eats chaos for breakfast. Glory is the grind.'
+  };
+
+  // Detect triad case
+  if (first[1] === second[1] && second[1] === third[1]) {
+    return {
+      type: 'combo',
+      dominant: first[0],
+      ...comboDescriptions['flame+grinder+mirror'],
+      image: images['flame+grinder+mirror']
+    };
+  }
+
+  if (diff1 >= 3) {
+    return {
+      type: 'pure',
+      dominant: first[0],
+      label: first[0],
+      description: pureDescriptions[first[0]],
+      image: images[first[0]]
+    };
+  } else {
+    const comboKey = [first[0], second[0]].sort().join('+');
+    const combo = comboDescriptions[comboKey] || comboDescriptions['flame+grinder+mirror'];
+    return {
+      type: 'combo',
+      dominant: first[0],
+      ...combo,
+      image: images[comboKey] || images['flame+grinder+mirror']
+    };
+  }
 }
 
 function playClickSound() {
