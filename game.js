@@ -99,7 +99,7 @@ function finishGame() {
   }
 
   // Update modal
-  document.querySelector('#result-modal h2').textContent = `YOU ARE... ${label.toUpperCase()}`;
+  document.querySelector('#result-modal h2').textContent = `${label.toUpperCase()}`;
   document.getElementById('meme-image').src = image;
   document.getElementById('class-description').textContent = description;
 

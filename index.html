@@ -61,25 +61,6 @@
         <h2>YOU ARE...</h2>
         <img id="meme-image" src="" alt="Meme" style="width: 100%; margin: 20px 0;" />
         <p id="class-description" style="font-size: 12px; line-height: 1.4em; margin: 10px 0 20px;"></p>
-        <div>
-        <button onclick="shareResult()">SHARE</button>
-        <button onclick="toggleResult(false)">CLOSE</button>
-        </div>
-    </div>
-    </div>   
-
-    <!-- Footer -->
-    <footer>
-      <img class="footer-icon" src="assets/icons/icon-ig.png" onclick="window.open('https://instagram.com', '_blank')" />
-      <img class="footer-icon" src="assets/icons/icon-coin.png" onclick="window.open('https://www.buymeacoffee.com', '_blank')" />
-    </footer>
-
-    <!-- Credits Modal -->
-    <div id="result-modal" class="hidden">
-    <div class="modal-content">
-        <h2>YOU ARE...</h2>
-        <img id="meme-image" src="" alt="Meme" style="width: 100%; margin: 20px 0;" />
-        <p id="class-description" style="font-size: 12px; line-height: 1.4em; margin: 10px 0 20px;"></p>
         
         <div id="share-buttons">
         <button onclick="shareToX()">X</button>
@@ -89,7 +70,23 @@
 
         <button onclick="toggleResult(false)">CLOSE</button>
     </div>
+    </div>  
+
+    <!-- Footer -->
+    <footer>
+      <img class="footer-icon" src="assets/icons/icon-ig.png" onclick="window.open('https://instagram.com', '_blank')" />
+      <img class="footer-icon" src="assets/icons/icon-coin.png" onclick="window.open('https://www.buymeacoffee.com', '_blank')" />
+    </footer>
+
+    <!-- Credits Modal -->
+    <div id="modal" class="hidden">
+      <div class="modal-content">
+        <h2>CREDITS</h2>
+        <p>CORE CHAOS<br><br>What kind of emotional chaos are you?</p>
+        <button onclick="toggleCredits(false)">CLOSE</button>
+      </div>
     </div>
+  </div>
 
     <script src="script.js"></script>
     <script src="game.js"></script>

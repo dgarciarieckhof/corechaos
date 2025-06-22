@@ -347,8 +347,18 @@ footer {
   padding: 30px;
   font-family: 'Press Start 2P', monospace;
   text-align: center;
-  width: 280px;
+  width: 400px;                     /* Increased from 280px */
+  max-width: 90vw;                 /* Makes it responsive */
+  font-size: 14px;                 /* Improve readability */
+  line-height: 1.6;                /* Better spacing */
   box-shadow: 0 0 12px var(--neon-pink);
+  overflow-y: auto;
+}
+
+.modal-content p#class-description {
+  white-space: normal;         /* Allow wrapping */
+  overflow: visible;           /* Show overflowed text */
+  text-overflow: unset;        /* Cancel ellipsis */
 }
 
 #share-buttons button {
@@ -362,3 +372,4 @@ footer {
   font-size: 10px;
   box-shadow: 0 0 6px var(--neon-pink);
 }
+

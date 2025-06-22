@@ -14,40 +14,101 @@ document.body.addEventListener("click", () => {
 }, { once: true });
 
 function shareResult() {
-  const image = document.getElementById('meme-image');
+  const imgTag = document.getElementById('meme-image');
   const description = document.getElementById('class-description').textContent;
-  let rawLabel = document.querySelector('#result-modal h2').textContent;
-  let label = rawLabel.replace("YOU ARE...", "").trim();
+  const rawLabel = document.querySelector('#result-modal h2').textContent;
+  const label = rawLabel.replace('YOU ARE...', '').trim();
+  const gameURL = 'corechaos.io';
 
-  const canvas = document.createElement('canvas');
-  canvas.width = image.width;
-  canvas.height = image.height + 100;
+  const sprite = new Image();
+  sprite.crossOrigin = 'anonymous';
+  sprite.onload = () => {
+    const canvasWidth = sprite.naturalWidth;
+    const topBannerHeight = 140;
+    const bottomPadding = 60;
+    const lineHeight = 26;
 
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(image, 0, 0);
+    // Create canvas with extra height for text
+    const ctx = document.createElement('canvas').getContext('2d');
+    ctx.canvas.width = canvasWidth;
 
-  ctx.fillStyle = "#FF00FF";
-  ctx.font = "16px 'Press Start 2P', monospace";
-  ctx.fillText(label.toUpperCase(), 10, image.height + 25);
-  ctx.fillText(description.slice(0, 40) + "...", 10, image.height + 50);
-  ctx.fillText("corechaos.io", 10, image.height + 75);
+    // Estimate wrapped lines
+    ctx.font = "20px 'Press Start 2P', monospace";
+    const descriptionLines = wrapTextLines(ctx, description, canvasWidth - 48);
+    const textBlockHeight = descriptionLines.length * lineHeight;
+    const totalHeight = topBannerHeight + sprite.naturalHeight + textBlockHeight + bottomPadding;
+    ctx.canvas.height = totalHeight;
 
-  canvas.toBlob(blob => {
-    const file = new File([blob], 'meme.png', { type: 'image/png' });
+    // Draw top banner
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvasWidth, topBannerHeight);
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({
-        files: [file],
-        title: label,
-        text: "Check your chaos class at corechaos.io"
-      });
+    // Label
+    ctx.fillStyle = '#FF37F8';
+    ctx.font = "28px 'Press Start 2P', monospace";
+    ctx.fillText(label.toUpperCase(), 24, 20);
+
+    // Description
+    ctx.fillStyle = '#00F9FF';
+    ctx.font = "20px 'Press Start 2P', monospace";
+    descriptionLines.forEach((line, i) => {
+      ctx.fillText(line, 24, 70 + i * lineHeight);
+    });
+
+    // Draw sprite
+    ctx.drawImage(sprite, 0, topBannerHeight);
+
+    // Draw footer URL
+    ctx.fillStyle = '#FF37F8';
+    ctx.font = "18px 'Press Start 2P', monospace";
+    ctx.fillText(gameURL, 24, totalHeight - 30);
+
+    // Convert to blob and share
+    ctx.canvas.toBlob(blob => {
+      const file = new File([blob], 'core-chaos-result.png', { type: 'image/png' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({
+          files: [file],
+          title: label,
+          text: `${label} · ${description} · ${gameURL}`
+        });
+      } else {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'core-chaos-result.png';
+        a.click();
+      }
+    });
+  };
+  sprite.src = imgTag.src;
+}
+
+// ⬇️ Helper: returns an array of lines that fit width
+function wrapTextLines(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+
+  for (let word of words) {
+    const testLine = line + word + ' ';
+    if (ctx.measureText(testLine).width > maxWidth) {
+      lines.push(line.trim());
+      line = word + ' ';
     } else {
-      alert("Sharing not supported. We'll download the image instead.");
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'meme.png';
-      a.click();
+      line = testLine;
     }
+  }
+  lines.push(line.trim());
+  return lines;
+}
+
+function downloadImage() {
+  getImageBlobWithText(blob => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'core-chaos-result.png';
+    a.click();
   });
 }
 
@@ -84,3 +145,91 @@ function toggleResult(show) {
 }
 
 document.getElementById('shareButton').addEventListener('click', shareResult);
+
+function getImageBlobWithText(callback) {
+  const rawLabel = document.querySelector('#result-modal h2').textContent;
+  const label = rawLabel.replace('YOU ARE...', '').trim();
+  const description = document.getElementById('class-description').textContent;
+  const imageSrc = document.getElementById('meme-image').src;
+
+  const sprite = new Image();
+  sprite.crossOrigin = 'anonymous';
+  sprite.onload = () => {
+    const canvasW = Math.max(sprite.naturalWidth, 600);
+    const canvasH = sprite.naturalHeight;
+
+    const ctx = document.createElement('canvas').getContext('2d');
+    ctx.canvas.width = canvasW;
+    ctx.canvas.height = canvasH;
+
+    // Draw the base image
+    ctx.drawImage(sprite, (canvasW - sprite.naturalWidth) / 2, 0);
+
+    // Text styling
+    const margin = 32;
+    const lineHeight = 28;
+
+    // Class name (top)
+    ctx.fillStyle = '#FF37F8';
+    ctx.font = "32px 'Press Start 2P', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(label.toUpperCase(), canvasW / 2, margin + 10);
+
+    // Description (wrapped, top)
+    ctx.font = "22px 'Press Start 2P', monospace";
+    ctx.fillStyle = '#00F9FF';
+    const descLines = wrapTextLines(ctx, description, canvasW - margin * 2);
+    descLines.forEach((line, i) => {
+      ctx.fillText(line, canvasW / 2, margin + 60 + i * lineHeight);
+    });
+
+    // Web link (bottom, on top of image)
+    ctx.fillStyle = '#FF37F8';
+    ctx.font = "20px 'Press Start 2P', monospace";
+    ctx.fillText('corechaos.io', canvasW / 2, canvasH - 20);
+
+    // Export
+    ctx.canvas.toBlob(callback);
+  };
+
+  sprite.src = imageSrc;
+}
+
+function shareToX() {
+  getImageBlobWithText(blob => {
+    const file = new File([blob], 'core-chaos-result.png', { type: 'image/png' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({
+        files: [file],
+        title: 'My Core Chaos Result',
+        text: "I just found my CORE CHAOS class! 💥🔥 Try it now at https://corechaos.io"
+      }).catch(console.error);
+    } else {
+      // Fallback: open X share link
+      const text = "I just found my CORE CHAOS class! 💥🔥 Try it now:";
+      const url = "https://corechaos.io";
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+      window.open(tweetUrl, '_blank');
+    }
+  });
+}
+
+function shareToWhatsApp() {
+  getImageBlobWithText(blob => {
+    const file = new File([blob], 'core-chaos-result.png', { type: 'image/png' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({
+        files: [file],
+        title: 'My Core Chaos Result',
+        text: "Check out my CORE CHAOS class! 💥🔥 https://corechaos.io"
+      }).catch(console.error);
+    } else {
+      // Fallback: open WhatsApp web with link
+      const text = "Check out my CORE CHAOS class! 💥🔥 https://corechaos.io";
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank');
+    }
+  });
+}
