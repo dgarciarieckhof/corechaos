@@ -16,7 +16,7 @@ A retro-style interactive quiz that assigns users to one of three archetypes —
 ### 📸 Image Export & Sharing
 - Dynamically renders a PNG from DOM content (meme image + text)
 - Class and description now appear enlarged and drawn on top of the meme
-- Website link (corechaos.io) displayed at the bottom of the meme
+- Website link (https://dgarciarieckhof.github.io/corechaos/) displayed at the bottom of the meme
 
 ### 📱 Sharing
 - Download button triggers the PNG generation
