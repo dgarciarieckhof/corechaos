@@ -4,20 +4,22 @@
   <meta charset="UTF-8" />
   <title>CORE CHAOS</title>
   <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
   <div id="crt">
     <h1 class="title">CORE CHAOS</h1>
 
+    <!-- Background & FX -->
     <audio id="bgm" loop autoplay muted>
       <source src="assets/sounds/8bit-sound.mp3" type="audio/mpeg" />
     </audio>
-
     <audio id="sound-flame" src="assets/sounds/flame.mp3"></audio>
     <audio id="sound-mirror" src="assets/sounds/mirror.mp3"></audio>
     <audio id="sound-grinder" src="assets/sounds/grinder.mp3"></audio>
     <audio id="sound-click" src="assets/sounds/click.mp3"></audio>    
 
+    <!-- HUD -->
     <section id="hud">
       <img src="assets/icons/icon-fire.png" class="icon flame" alt="flame" />
       <span class="score flame-score">0%</span>
@@ -49,33 +51,38 @@
       <button class="ITEM" onclick="toggleCredits(true)">CREDITS</button>
     </div>
 
-    <!-- Game Section -->
+    <!-- Game Questions -->
     <section id="question-box" class="hidden">
-    <div id="question-text"></div>
-    <div id="answer-container"></div>
+      <div id="question-text"></div>
+      <div id="answer-container"></div>
     </section>
 
     <!-- Result Modal -->
     <div id="result-modal" class="hidden">
-    <div class="modal-content">
+      <div class="modal-content">
         <h2>YOU ARE...</h2>
         <img id="meme-image" src="" alt="Meme" style="width: 100%; margin: 20px 0;" />
         <p id="class-description" style="font-size: 12px; line-height: 1.4em; margin: 10px 0 20px;"></p>
         
         <div id="share-buttons">
-        <button onclick="shareToX()">X</button>
-        <button onclick="shareToWhatsApp()">WhatsApp</button>
-        <button onclick="downloadImage()">Download</button>
+          <button onclick="shareToX()">X</button>
+          <button onclick="shareToWhatsApp()">WhatsApp</button>
+          <button onclick="downloadImage()">Download</button>
         </div>
 
         <button onclick="toggleResult(false)">CLOSE</button>
-    </div>
+      </div>
     </div>  
 
-    <!-- Footer -->
-    <footer>
-      <img class="footer-icon" src="assets/icons/icon-ig.png" onclick="window.open('https://instagram.com', '_blank')" />
-      <img class="footer-icon" src="assets/icons/icon-coin.png" onclick="window.open('https://www.buymeacoffee.com', '_blank')" />
+    <!-- Footer with Support -->
+    <footer class="support-footer">
+      <span class="support-label">Support this work</span>
+      <img
+        class="footer-icon coin"
+        src="assets/icons/icon-coin.png"
+        alt="Buy-me-a-coffee coin"
+        onclick="window.open('https://www.buymeacoffee.com', '_blank')"
+      />
     </footer>
 
     <!-- Credits Modal -->
@@ -88,7 +95,8 @@
     </div>
   </div>
 
-    <script src="script.js"></script>
-    <script src="game.js"></script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
