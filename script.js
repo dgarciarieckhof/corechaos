@@ -18,7 +18,7 @@ function shareResult() {
   const description = document.getElementById('class-description').textContent;
   const rawLabel = document.querySelector('#result-modal h2').textContent;
   const label = rawLabel.replace('YOU ARE...', '').trim();
-  const gameURL = 'corechaos.io';
+  const gameURL = 'thedatachronicles.com';
 
   const sprite = new Image();
   sprite.crossOrigin = 'anonymous';
@@ -186,7 +186,7 @@ function getImageBlobWithText(callback) {
     // Web link (bottom, on top of image)
     ctx.fillStyle = '#FF37F8';
     ctx.font = "20px 'Press Start 2P', monospace";
-    ctx.fillText('corechaos.io', canvasW / 2, canvasH - 20);
+    ctx.fillText('thedatachronicles.com', canvasW / 2, canvasH - 20);
 
     // Export
     ctx.canvas.toBlob(callback);
@@ -203,12 +203,12 @@ function shareToX() {
       navigator.share({
         files: [file],
         title: 'My Core Chaos Result',
-        text: "I just found my CORE CHAOS class! 💥🔥 Try it now at https://corechaos.io"
+        text: "I just found my CORE CHAOS class! 💥🔥 Try it now at https://dgarciarieckhof.github.io/corechaos/"
       }).catch(console.error);
     } else {
       // Fallback: open X share link
       const text = "I just found my CORE CHAOS class! 💥🔥 Try it now:";
-      const url = "https://corechaos.io";
+      const url = "https://dgarciarieckhof.github.io/corechaos/";
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
       window.open(tweetUrl, '_blank');
     }
@@ -223,11 +223,11 @@ function shareToWhatsApp() {
       navigator.share({
         files: [file],
         title: 'My Core Chaos Result',
-        text: "Check out my CORE CHAOS class! 💥🔥 https://corechaos.io"
+        text: "Check out my CORE CHAOS class! 💥🔥 https://dgarciarieckhof.github.io/corechaos/"
       }).catch(console.error);
     } else {
       // Fallback: open WhatsApp web with link
-      const text = "Check out my CORE CHAOS class! 💥🔥 https://corechaos.io";
+      const text = "Check out my CORE CHAOS class! 💥🔥 https://dgarciarieckhof.github.io/corechaos/";
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
       window.open(waUrl, '_blank');
     }
