@@ -5,7 +5,6 @@
   <title>CORE CHAOS</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <div id="crt">
     <h1 class="title">CORE CHAOS</h1>
@@ -16,17 +15,22 @@
 
     <section id="hud">
       <img src="assets/icons/icon-fire.png" class="icon flame" alt="flame" />
+      <span class="score flame-score">0%</span>
+
       <img src="assets/icons/icon-mirror.png" class="icon mirror" alt="mirror" />
+      <span class="score mirror-score">0%</span>
+
       <img src="assets/icons/icon-rock.png" class="icon grinder" alt="grinder" />
+      <span class="score grinder-score">0%</span>
 
       <svg id="tri" viewBox="0 0 300 300">
         <defs>
           <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-            <path d="M0 30 15 0 30 30" stroke="#033" stroke-width="1"/>
+            <path d="M0 30 15 0 30 30" stroke="#033" stroke-width="1" />
           </pattern>
         </defs>
-        <polygon points="150,0 0,260 300,260" fill="url(#grid)" stroke="#06f9ff" stroke-width="3"/>
-        <circle id="dot" cx="150" cy="173" r="8" fill="#ff37f8"/>
+        <polygon points="150,0 0,260 300,260" fill="url(#grid)" stroke="#06f9ff" stroke-width="3" />
+        <circle id="dot" cx="150" cy="173" r="8" fill="#ff37f8" />
       </svg>
 
       <span class="label flame">THE FLAME</span>
@@ -39,11 +43,14 @@
       <button class="ITEM" onclick="toggleCredits(true)">CREDITS</button>
     </div>
 
+    <section id="game" class="hidden">
+      <div id="questionBox"></div>
+      <div id="answersBox"></div>
+    </section>
+
     <footer>
-      <img class="footer-icon" src="assets/icons/icon-ig.png"
-           onclick="window.open('https://instagram.com', '_blank')" />
-      <img class="footer-icon" src="assets/icons/icon-coin.png"
-           onclick="window.open('https://www.buymeacoffee.com', '_blank')" />
+      <img class="footer-icon" src="assets/icons/icon-ig.png" onclick="window.open('https://instagram.com', '_blank')" />
+      <img class="footer-icon" src="assets/icons/icon-coin.png" onclick="window.open('https://www.buymeacoffee.com', '_blank')" />
     </footer>
 
     <div id="modal" class="hidden">
@@ -53,9 +60,12 @@
         <button onclick="toggleCredits(false)">CLOSE</button>
       </div>
     </div>
+
+    <audio id="bgm" loop autoplay muted>
+      <source src="assets/audio/loop.mp3" type="audio/mpeg" />
+    </audio>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
