@@ -3,13 +3,7 @@ let score = { flame: 0, mirror: 0, grinder: 0 };
 let questions = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch('assets/questions.json')
-    .then(response => response.json())
-    .then(data => {
-      questions = shuffle(data).slice(0, 10);
-      document.getElementById('startButton').addEventListener('click', startGame);
-    })
-    .catch(err => console.error("Failed to load questions:", err));
+  document.getElementById('startButton').addEventListener('click', startGame);
 });
 
 function shuffle(array) {
@@ -17,10 +11,24 @@ function shuffle(array) {
 }
 
 function startGame() {
-  fetch('assets/questions.json')
-    .then(response => response.json())
+  const lang = navigator.language.slice(0, 2).toLowerCase();
+  const supported = ['en', 'es', 'fr', 'de', 'pt'];
+  const file = supported.includes(lang) ? lang : 'en';
+
+  const path = `assets/questions/questions-${file}.json`;
+  const fallbackPath = `assets/questions/questions-en.json`;
+
+  fetch(path)
+    .then(response => {
+      if (!response.ok) throw new Error("Language file not found");
+      return response.json();
+    })
+    .catch(() => {
+      console.warn(`Falling back to English version`);
+      return fetch(fallbackPath).then(res => res.json());
+    })
     .then(data => {
-      questions = shuffle(data).slice(0, 10);
+      questions = shuffle(data).slice(0, 10); // Randomized full list
       currentQuestionIndex = 0;
       score = { flame: 0, mirror: 0, grinder: 0 };
 
@@ -29,7 +37,7 @@ function startGame() {
       showQuestion();
       updateScores();
     })
-    .catch(err => console.error("Failed to load questions:", err));
+    .catch(err => console.error("Failed to load ANY question file:", err));
 }
 
 function showQuestion() {
@@ -40,7 +48,9 @@ function showQuestion() {
   qText.textContent = q.text;
   aContainer.innerHTML = '';
 
-  q.answers.forEach(answer => {
+  const shuffledAnswers = shuffle([...q.answers]);
+
+  shuffledAnswers.forEach(answer => {
     const btn = document.createElement('button');
     btn.className = 'answer-button';
     btn.textContent = answer.text;
@@ -50,8 +60,7 @@ function showQuestion() {
 }
 
 function handleAnswer(type) {
-  playClickSound();       // Play click sound
-
+  playClickSound();
   score[type]++;
   currentQuestionIndex++;
 
@@ -60,13 +69,12 @@ function handleAnswer(type) {
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
-    finishGame();          // Only here we play trait sound
+    finishGame();
   }
 }
 
 function updateScores() {
   const total = currentQuestionIndex || 1;
-
   const flamePct = Math.round((score.flame / total) * 100);
   const mirrorPct = Math.round((score.mirror / total) * 100);
   const grinderPct = Math.round((score.grinder / total) * 100);
@@ -79,18 +87,15 @@ function updateScores() {
 function finishGame() {
   const dominant = getDominantTrait();
 
-  // Duck BGM
   const bgm = document.getElementById("bgm");
   if (bgm) bgm.volume = 0.1;
 
-  // Play trait sound
   const traitSound = document.getElementById(`sound-${dominant}`);
   if (traitSound) {
     traitSound.currentTime = 0;
     traitSound.play();
   }
 
-  // Show meme
   const memeMap = {
     flame: 'assets/memes/flame.jpg',
     mirror: 'assets/memes/mirror.jpg',
