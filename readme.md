@@ -35,3 +35,12 @@ assets/
   ├─ memes/
   └─ sounds/
 ```
+
+## To-Do
+- Add reactiveness so it can be played in mobile/desktop/tablets
+- Improve layout, and responsiveness
+- Add ads trhough pop ups once you are done with the quizz
+- Add ads at the bottom of the footer icons
+- Change language of the whole game based on navigator locale (if language doesnt exist english is the default)
+- Optimize code structure
+- Add authentication/login google if you want to store you result and see how many other people are like yo
