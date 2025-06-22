@@ -1,6 +1,8 @@
 let currentQuestionIndex = 0;
 let score = { flame: 0, mirror: 0, grinder: 0 };
 let questions = [];
+let adShown = false;
+
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('startButton').addEventListener('click', startGame);
@@ -66,11 +68,25 @@ function handleAnswer(type) {
 
   updateScores();
 
+  // Muestra ad una sola vez al terminar pregunta 5
+  if (currentQuestionIndex === 5 && !adShown) {
+    adShown = true;
+    const adModal = document.getElementById('ad-modal');
+    if (adModal) adModal.classList.remove('hidden');
+    return;
+  }
+
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
     finishGame();
   }
+}
+
+function closeAd() {
+  const modal = document.getElementById('ad-modal');
+  if (modal) modal.classList.add('hidden');
+  showQuestion(); // Continuar con la pregunta 6
 }
 
 function updateScores() {

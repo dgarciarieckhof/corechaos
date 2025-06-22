@@ -426,3 +426,18 @@ footer {
   .footer-icon.coin { width: 50px; }
   .support-label    { font-size: 10px; }
 }
+
+#ad-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#ad-modal .modal-content p {
+  font-size: 14px;
+  line-height: 1.6em;
+}

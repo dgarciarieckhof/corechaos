@@ -37,8 +37,6 @@ assets/
 ```
 
 ## To-Do
-- Add reactiveness so it can be played in mobile/desktop/tablets
-- Improve layout, and responsiveness
-- Add ads trhough pop ups once you are done with the quizz
+- Add ads through pop ups once you are done with the quizz
 - Add ads at the bottom of the footer icons
 - Optimize code structure
